@@ -90,7 +90,7 @@ if options:
     
     with st.sidebar:
         st.subheader("Top Stories")
-        choice = st.radio("Meme the news:", radiohead)
+        choice = st.radio("Meme the news:", radiohead, None)
     
     if radiohead == []:
         st.markdown("No news Today. Come Back Tomorrow!")
