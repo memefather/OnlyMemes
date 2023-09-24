@@ -1,7 +1,5 @@
 def stableai(input):
 
-    appkey = os.getenv("STABILITY_KEY")
-
     import os
     import io
     import warnings
@@ -19,7 +17,8 @@ def stableai(input):
     # https://dreamstudio.ai/account
 
     # Paste your API Key below.
-
+    
+    appkey = os.getenv("STABILITY_KEY")
     os.environ['STABILITY_KEY'] = appkey
 
     # Set up our connection to the API.
