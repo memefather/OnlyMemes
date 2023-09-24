@@ -62,7 +62,6 @@ st.title("OnlyMemes 😂")
 options = st.selectbox(
     'What do you meme?',
     ('business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'))
-st.write(options)
 
 with st.sidebar:
     st.markdown("Top Stories")
