@@ -63,15 +63,18 @@ options = st.multiselect(
     'What do you meme?',
     ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'])
 
+with st.sidebar:
+    st.subheader("Top Stories")
+
 if options:
     newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
     
-    all_articles = newsapi.get_everything(language='en',
+    all_articles = newsapi.get_top_headlines(language='en',
                                           category=options,
-                                          from_param= date.today()-timedelta(days = 1),
+                                          #from_param= date.today()-timedelta(days = 1),
                                           sources='cnn',
-                                          sort_by='publishedAt',
-                                          page = 1
+                                          #sort_by='publishedAt',
+                                          #page = 1
                                           )
     
     headlines = {}
