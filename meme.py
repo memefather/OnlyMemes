@@ -37,14 +37,14 @@ for i in all_articles['articles']:
     headlines[i['title']] = i['title'] + '. ' + i['description']
     radiohead.append(i['title'])
 
-if radiohead == []:
-    st.stop()
-    st.markdown("No News Today. Come Back Tomorrow!")
-    st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
-
 with st.sidebar:
     st.subheader("Top Stories")
     choice = st.radio("Meme the news:", radiohead)
+
+if radiohead == []:
+    st.markdown("No News Today. Come Back Tomorrow!")
+    st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
+    st.stop()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 imgurkey = os.getenv("IMGUR_KEY")
