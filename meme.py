@@ -62,6 +62,7 @@ st.title("OnlyMemes 😂")
 options = st.multiselect(
     'What do you meme?',
     ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'])
+st.write(options)
 
 with st.sidebar:
     st.subheader("Top Stories")
