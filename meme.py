@@ -5,7 +5,7 @@ import json
 from stable import stableai
 import streamlit as st
 import base64
-from datetime import date
+from datetime import date, timedelta(days = 2)
 from newsapi import NewsApiClient
 
 st.set_page_config(page_icon="😂", page_title="OnlyMemes")
@@ -24,7 +24,7 @@ st.title("OnlyMemes 😂")
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 all_articles = newsapi.get_everything(language='en',
-                                      from_param= date.today(),
+                                      from_param= date.today()-timedelta(days = 1),
                                       sources='cnn',
                                       sort_by='publishedAt',
                                       page = 1
@@ -36,6 +36,9 @@ radiohead = []
 for i in all_articles['articles']:
     headlines[i['title']] = i['title'] + '. ' + i['description']
     radiohead.append(i['title'])
+
+if radiohead == []:
+    st.stop()
 
 with st.sidebar:
     st.subheader("Top Stories")
