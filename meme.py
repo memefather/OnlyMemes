@@ -5,7 +5,7 @@ import json
 from stable import stableai
 import streamlit as st
 import base64
-from datetime import date, timedelta(days = 2)
+from datetime import date, timedelta
 from newsapi import NewsApiClient
 
 st.set_page_config(page_icon="😂", page_title="OnlyMemes")
