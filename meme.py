@@ -37,6 +37,9 @@ for i in all_articles['articles']:
     headlines[i['title']] = i['title'] + '. ' + i['description']
     radiohead.append(i['title'])
 
+if len(radiohead)>5:
+    radiohead = radiohead[0:4]
+
 with st.sidebar:
     st.subheader("Top Stories")
     choice = st.radio("Meme the news:", radiohead)
@@ -90,7 +93,7 @@ def img2url(img):
     response = requests.post(upurl, headers=headers, data={"image": base64_data})
     return response.json()["data"]["link"]
 
-memedata = json.loads(gpt_meme(headlines[[choice)])
+memedata = json.loads(gpt_meme(headlines[choice])
 img_prompt = memedata['image_des']
 topline = memedata['top_text']
 botline = memedata['bottom_text']
