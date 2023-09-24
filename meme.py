@@ -72,7 +72,7 @@ if options:
     all_articles = newsapi.get_top_headlines(language='en',
                                           category=options,
                                           #from_param= date.today()-timedelta(days = 1),
-                                          sources='cnn',
+                                          #sources='cnn',
                                           #sort_by='publishedAt',
                                           #page = 1
                                           )
