@@ -19,42 +19,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("OnlyMemes 😂")
-
-newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
-
-all_articles = newsapi.get_everything(language='en',
-                                      from_param= date.today()-timedelta(days = 1),
-                                      sources='cnn',
-                                      sort_by='publishedAt',
-                                      page = 1
-                                      )
-
-headlines = {}
-radiohead = []
-
-for i in all_articles['articles']:
-    headlines[i['title']] = i['title'] + '. ' + i['description']
-    radiohead.append(i['title'])
-
-if len(radiohead)>5:
-    radiohead = radiohead[0:4]
-
-with st.sidebar:
-    st.subheader("Top Stories")
-    choice = st.radio("Meme the news:", radiohead)
-
-if radiohead == []:
-    st.markdown("No news Today. Come Back Tomorrow!")
-    st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
-    st.stop()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
-imgurkey = os.getenv("IMGUR_KEY")
-model_id = 'gpt-3.5-turbo'
-
-conversation = []
-
 @st.cache_data
 def gpt_meme(news):
         conversation.append({'role': 'user', 'content': f"Give me meme image description and text for the following news: {news}. Make it with funny sarcasm or dark humor. You will answer in the following manner: {{\"image_des\": \"description\", \"top_text\": \"text\", \"bottom_text\": \"text\" Do not include anything else in the response.}} "})
@@ -93,15 +57,58 @@ def img2url(img):
     response = requests.post(upurl, headers=headers, data={"image": base64_data})
     return response.json()["data"]["link"]
 
-memedata = json.loads(gpt_meme(headlines[choice]))
-img_prompt = memedata['image_des']
-topline = memedata['top_text']
-botline = memedata['bottom_text']
+st.title("OnlyMemes 😂")
 
-stableai(img_prompt)
+options = st.multiselect(
+    'What do you meme?',
+    ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology')
 
-imgurl = img2url('992446758.png')
-
-meme_url = create_meme(imgurl, topline, botline)
-
-st.image(meme_url)
+if options:
+    newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
+    
+    all_articles = newsapi.get_everything(language='en',
+                                          category=options
+                                          from_param= date.today()-timedelta(days = 1),
+                                          sources='cnn',
+                                          sort_by='publishedAt',
+                                          page = 1
+                                          )
+    
+    headlines = {}
+    radiohead = []
+    
+    for i in all_articles['articles']:
+        headlines[i['title']] = i['title'] + '. ' + i['description']
+        radiohead.append(i['title'])
+    
+    if len(radiohead)>5:
+        radiohead = radiohead[0:4]
+    
+    with st.sidebar:
+        st.subheader("Top Stories")
+        choice = st.radio("Meme the news:", radiohead)
+    
+    if radiohead == []:
+        st.markdown("No news Today. Come Back Tomorrow!")
+        st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
+        st.stop()
+    
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    imgurkey = os.getenv("IMGUR_KEY")
+    model_id = 'gpt-3.5-turbo'
+    
+    conversation = []
+    
+    
+    memedata = json.loads(gpt_meme(headlines[choice]))
+    img_prompt = memedata['image_des']
+    topline = memedata['top_text']
+    botline = memedata['bottom_text']
+    
+    stableai(img_prompt)
+    
+    imgurl = img2url('992446758.png')
+    
+    meme_url = create_meme(imgurl, topline, botline)
+    
+    st.image(meme_url)
