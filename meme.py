@@ -81,7 +81,6 @@ if options:
     headlines = {}
     radiohead = []
 
-    st.write(all_articles)
 
     if all_articles['articles'] == []:
         st.subheader("No news Today. Come Back Tomorrow!")
