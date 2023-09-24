@@ -1,3 +1,4 @@
+@st.cache_data
 def stableai(input):
 
     import os
