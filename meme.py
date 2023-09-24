@@ -89,7 +89,7 @@ if options:
         st.stop()
 
     for i in all_articles['articles']:
-        if i['title'] != None and i['description'] != None:
+        if i['title'] != None and i['description'] != None and i['title'] != "[Removed]" and i['description'] != "[Removed]":
             headlines[i['title']] = i['title'] + '. ' + i['description']
             radiohead.append(i['title'])
     
