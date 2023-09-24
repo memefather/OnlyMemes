@@ -42,7 +42,7 @@ with st.sidebar:
     choice = st.radio("Meme the news:", radiohead)
 
 if radiohead == []:
-    st.markdown("No News Today. Come Back Tomorrow!")
+    st.markdown("No news Today. Come Back Tomorrow!")
     st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
     st.stop()
 
@@ -52,6 +52,7 @@ model_id = 'gpt-3.5-turbo'
 
 conversation = []
 
+@st.cache_data
 def gpt_meme(news):
         conversation.append({'role': 'user', 'content': f"Give me meme image description and text for the following news: {news}. Make it with funny sarcasm or dark humor. You will answer in the following manner: {{\"image_des\": \"description\", \"top_text\": \"text\", \"bottom_text\": \"text\" Do not include anything else in the response.}} "})
         response = openai.ChatCompletion.create(
@@ -61,11 +62,9 @@ def gpt_meme(news):
         conversation.append({'role': response.choices[0].message.role, 'content': response.choices[0].message.content})
         return conversation[-1]['content'].strip()
 
+@st.cache_data
 def create_meme(imgurl, top_text, bot_text):
-
     url = 'https://api.memegen.link/images/custom'
-
-
     payload = {
       "background": imgurl,
       "style": "default",
@@ -76,6 +75,7 @@ def create_meme(imgurl, top_text, bot_text):
     response = requests.post(url, json = payload)
     return json.loads(response.text)['url']
 
+@st.cache_data
 def img2url(img):
     # Set API endpoint and headers
     upurl = "https://api.imgur.com/3/image"
@@ -97,12 +97,8 @@ botline = memedata['bottom_text']
 
 stableai(img_prompt)
 
-st.image('992446758.png')
-
 imgurl = img2url('992446758.png')
 
 meme_url = create_meme(imgurl, topline, botline)
-
-st.write(meme_url)
 
 st.image(meme_url)
