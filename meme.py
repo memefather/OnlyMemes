@@ -54,7 +54,7 @@ def img2url(img):
       #base64_data = base64.b64encode(data)
 
     # Upload image to Imgur and get URL
-    response = requests.post(upurl, headers=headers, data={"image": base64.b64encode(img)})
+    response = requests.post(upurl, headers=headers, data={"image": base64.b64encode(img.getvalue()).decode()})
     return response.json()["data"]["link"]
 
 st.title("OnlyMemes 😂")
