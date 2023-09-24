@@ -65,7 +65,7 @@ options = st.selectbox(
 st.write(options)
 
 with st.sidebar:
-    st.subheader("Top Stories")
+    st.markdown("Top Stories")
 
 if options:
     newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
@@ -85,34 +85,31 @@ if options:
         headlines[i['title']] = i['title'] + '. ' + i['description']
         radiohead.append(i['title'])
     
-    if len(radiohead) >= 5:
+    if len(radiohead) > 5:
         radiohead = radiohead[0:5]
     
     with st.sidebar:
-        st.subheader("Top Stories")
         choice = st.radio("Meme the news:", radiohead, None)
     
     if radiohead == []:
         st.markdown("No news Today. Come Back Tomorrow!")
         st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
         st.stop()
-    
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    imgurkey = os.getenv("IMGUR_KEY")
-    model_id = 'gpt-3.5-turbo'
-    
-    conversation = []
-    
-    
-    memedata = json.loads(gpt_meme(headlines[choice]))
-    img_prompt = memedata['image_des']
-    topline = memedata['top_text']
-    botline = memedata['bottom_text']
-    
-    stableai(img_prompt)
-    
-    imgurl = img2url('992446758.png')
-    
-    meme_url = create_meme(imgurl, topline, botline)
-    
-    st.image(meme_url)
+        
+    if choice == None:
+        st.image('https://imgflip.com/i/807zif')
+    else:
+        openai.api_key = os.getenv("OPENAI_API_KEY")
+        imgurkey = os.getenv("IMGUR_KEY")
+        model_id = 'gpt-3.5-turbo'
+        conversation = []
+        
+        memedata = json.loads(gpt_meme(headlines[choice]))
+        img_prompt = memedata['image_des']
+        topline = memedata['top_text']
+        botline = memedata['bottom_text']
+        stableai(img_prompt)
+        imgurl = img2url('992446758.png')
+        meme_url = create_meme(imgurl, topline, botline)
+        
+        st.image(meme_url)
