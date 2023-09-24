@@ -61,7 +61,7 @@ st.title("OnlyMemes 😂")
 
 options = st.multiselect(
     'What do you meme?',
-    ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology')
+    ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'])
 
 if options:
     newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
