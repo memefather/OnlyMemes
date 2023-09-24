@@ -79,7 +79,12 @@ if options:
     
     headlines = {}
     radiohead = []
-    
+
+    if radiohead == []:
+        st.markdown("No news Today. Come Back Tomorrow!")
+        st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
+        st.stop()
+
     for i in all_articles['articles']:
         headlines[i['title']] = i['title'] + '. ' + i['description']
         radiohead.append(i['title'])
@@ -89,11 +94,6 @@ if options:
     
     with st.sidebar:
         choice = st.radio("Meme the news:", radiohead, None)
-    
-    if radiohead == []:
-        st.markdown("No news Today. Come Back Tomorrow!")
-        st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
-        st.stop()
         
     if choice == None:
         col1,col2,col3 = st.columns([.25,.5,.25])
