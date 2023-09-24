@@ -96,7 +96,9 @@ if options:
         st.stop()
         
     if choice == None:
-        st.image('https://i.imgflip.com/807zif.jpg')
+        col1,col2,col3 = st.columns(3)
+        with col2:
+            st.image('https://i.imgflip.com/807zif.jpg')
     else:
         openai.api_key = os.getenv("OPENAI_API_KEY")
         imgurkey = os.getenv("IMGUR_KEY")
