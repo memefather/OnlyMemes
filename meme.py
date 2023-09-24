@@ -24,7 +24,7 @@ st.title("OnlyMemes 😂")
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 all_articles = newsapi.get_everything(language='en',
-                                      from_param= date.today()-timedelta(days = 0),
+                                      from_param= date.today()-timedelta(days = 1),
                                       sources='cnn',
                                       sort_by='publishedAt',
                                       page = 1
