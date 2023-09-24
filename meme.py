@@ -7,6 +7,7 @@ import streamlit as st
 import base64
 from datetime import date, timedelta
 from newsapi import NewsApiClient
+from streamlit_extras.buy_me_a_coffee import button
 
 st.set_page_config(page_icon="😂", page_title="OnlyMemes")
 
@@ -97,6 +98,7 @@ if options:
     
     with st.sidebar:
         choice = st.radio("Meme the news:", radiohead, None)
+        button(username="digitalmagic", floating=False, width=221)
         
     if choice == None:
         col1,col2,col3 = st.columns([.275,.45,.275])
@@ -108,12 +110,15 @@ if options:
         model_id = 'gpt-3.5-turbo'
         conversation = []
         
-        memedata = json.loads(gpt_meme(headlines[choice]))
+        with st.spinner('Searching NVIDIA A100...'):
+            memedata = json.loads(gpt_meme(headlines[choice]))
         img_prompt = memedata['image_des']
         topline = memedata['top_text']
         botline = memedata['bottom_text']
-        imgbytes = stableai(img_prompt)
-        imgurl = img2url(imgbytes)
-        meme_url = create_meme(imgurl, topline, botline)
+        with st.spinner('Giving Jensen Huang all my money...'):
+            imgbytes = stableai(img_prompt)
+        with st.spinner('Please consider buy me a coffee... or a gold bar'):
+            imgurl = img2url(imgbytes)
+            meme_url = create_meme(imgurl, topline, botline)
         
         st.image(meme_url)
