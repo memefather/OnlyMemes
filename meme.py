@@ -49,12 +49,12 @@ def img2url(img):
     headers = {"Authorization": f"Client-ID {imgurkey}"}
 
     # Read image file and encode as base64
-    with open(img, "rb") as file:
-      data = file.read()
-      base64_data = base64.b64encode(data)
+    #with open(img, "rb") as file:
+      #data = file.read()
+      #base64_data = base64.b64encode(data)
 
     # Upload image to Imgur and get URL
-    response = requests.post(upurl, headers=headers, data={"image": base64_data})
+    response = requests.post(upurl, headers=headers, data={"image": img})
     return response.json()["data"]["link"]
 
 st.title("OnlyMemes 😂")
@@ -110,8 +110,8 @@ if options:
         img_prompt = memedata['image_des']
         topline = memedata['top_text']
         botline = memedata['bottom_text']
-        stableai(img_prompt)
-        imgurl = img2url('992446758.png')
+        imgbytes = stableai(img_prompt)
+        imgurl = img2url(imgbytes)
         meme_url = create_meme(imgurl, topline, botline)
         
         st.image(meme_url)
