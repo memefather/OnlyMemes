@@ -59,5 +59,6 @@ def stableai(input):
                     "Your request activated the API's safety filters and could not be processed."
                     "Please modify the prompt and try again.")
             if artifact.type == generation.ARTIFACT_IMAGE:
-                img = Image.open(io.BytesIO(artifact.binary))
-                img.save(str(artifact.seed)+ ".png") # Save our generated images with their seed number as the filename.
+                return io.BytesIO(artifact.binary)
+                #img = Image.open(io.BytesIO(artifact.binary))
+                #img.save(str(artifact.seed)+ ".png") # Save our generated images with their seed number as the filename.
