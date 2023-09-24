@@ -22,7 +22,7 @@ st.markdown(
 
 @st.cache_data
 def gpt_meme(news):
-        conversation.append({'role': 'user', 'content': f"Give me meme image description and text for the following news: {news}. Make it with funny with snarky sarcasm, dark humor, or puns. You will answer in the following manner: {{\"image_des\": \"description\", \"top_text\": \"text\", \"bottom_text\": \"text\" Do not include anything else in the response.}} "})
+        conversation.append({'role': 'user', 'content': f"Give me meme image description and text for the following news: {news}. Make it with extreme sarcasm, irony, absurdity, dark humor, or wordplay. You will answer in the following manner: {{\"image_des\": \"description\", \"top_text\": \"text\", \"bottom_text\": \"text\" Do not include anything else in the response.}} "})
         response = openai.ChatCompletion.create(
             model=model_id,
             messages=conversation
