@@ -96,7 +96,7 @@ if options:
         st.stop()
         
     if choice == None:
-        col1,col2,col3 = st.columns(3)
+        col1,col2,col3 = st.columns([.25,.5,.25)
         with col2:
             st.image('https://i.imgflip.com/807zif.jpg')
     else:
