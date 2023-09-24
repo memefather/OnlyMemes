@@ -64,7 +64,7 @@ options = st.selectbox(
     ('business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'))
 
 with st.sidebar:
-    st.markdown("Top Stories")
+    st.subheader("Top Stories")
 
 if options:
     newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
