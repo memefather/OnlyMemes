@@ -1,12 +1,13 @@
+import streamlit as st
+import os
+import io
+import warnings
+from PIL import Image
+from stability_sdk import client
+import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
+
 @st.cache_data
 def stableai(input):
-
-    import os
-    import io
-    import warnings
-    from PIL import Image
-    from stability_sdk import client
-    import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 
     # Our Host URL should not be prepended with "https" nor should it have a trailing slash.
     os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
