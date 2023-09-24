@@ -113,7 +113,6 @@ if options:
         topline = memedata['top_text']
         botline = memedata['bottom_text']
         imgbytes = stableai(img_prompt)
-        st.image(imgbytes)
         imgurl = img2url(imgbytes)
         meme_url = create_meme(imgurl, topline, botline)
         
