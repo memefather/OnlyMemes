@@ -59,9 +59,9 @@ def img2url(img):
 
 st.title("OnlyMemes 😂")
 
-options = st.multiselect(
+options = st.selectbox(
     'What do you meme?',
-    ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'])
+    ('business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'))
 st.write(options)
 
 with st.sidebar:
