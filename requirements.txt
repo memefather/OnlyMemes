@@ -1,0 +1,4 @@
+streamlit
+openai
+stability_sdk
+newsapi
