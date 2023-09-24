@@ -97,9 +97,9 @@ if options:
         choice = st.radio("Meme the news:", radiohead, None)
         
     if choice == None:
-        col1,col2,col3 = st.columns([.25,.5,.25])
+        col1,col2,col3 = st.columns([.275,.45,.275])
         with col2:
-            st.image('https://i.imgflip.com/807zif.jpg')
+            st.image('https://i.imgflip.com/8080q0.jpg')
     else:
         openai.api_key = os.getenv("OPENAI_API_KEY")
         imgurkey = os.getenv("IMGUR_KEY")
