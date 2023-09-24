@@ -2,3 +2,4 @@ streamlit
 openai
 stability_sdk
 newsapi-python==0.2.7
+streamlit-extras
