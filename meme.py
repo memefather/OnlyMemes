@@ -90,7 +90,7 @@ def img2url(img):
     response = requests.post(upurl, headers=headers, data={"image": base64_data})
     return response.json()["data"]["link"]
 
-memedata = json.loads(gpt_meme(choice))
+memedata = json.loads(gpt_meme(headlines[[choice)])
 img_prompt = memedata['image_des']
 topline = memedata['top_text']
 botline = memedata['bottom_text']
