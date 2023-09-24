@@ -39,6 +39,8 @@ for i in all_articles['articles']:
 
 if radiohead == []:
     st.stop()
+    st.markdown("No News Today. Come Back Tomorrow!")
+    st.markdown("![Alt Text](https://y.yarn.co/6b1e3a6f-f51e-492d-a48a-a40a27e3d471_text.gif)")
 
 with st.sidebar:
     st.subheader("Top Stories")
