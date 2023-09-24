@@ -86,7 +86,7 @@ if options:
         radiohead.append(i['title'])
     
     if len(radiohead) >= 5:
-        radiohead = radiohead[0:4]
+        radiohead = radiohead[0:5]
     
     with st.sidebar:
         st.subheader("Top Stories")
